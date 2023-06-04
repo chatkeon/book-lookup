@@ -1,0 +1,42 @@
+#header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  box-shadow: 0 0 10px rgb(0,0,0);
+  -webkit-box-shadow: 0 0 10px rgb(0,0,0);
+  -moz-box-shadow: 0 0 10px rgb(0,0,0);
+  z-index: 10;
+}
+
+#main {
+  padding: 100px 32px 32px;
+}
+
+#main > .card {
+  margin: 0 auto 32px;
+  width: 80%;
+  max-width: 1000px;
+}
+
+.card-header {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 16px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.card-header > span {
+  flex: 1 0 auto;
+}
+
+.card-content {
+  padding: 16px;
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+}
