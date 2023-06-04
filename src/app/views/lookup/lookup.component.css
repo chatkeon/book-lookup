@@ -1,0 +1,73 @@
+.instruction-text {
+  margin-bottom: 16px;
+}
+
+#inputs {
+  padding: 0;
+}
+
+.tab-container {
+  padding: 32px 16px 16px;
+}
+
+#text-input, #image-input {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+#isbn-form-field {
+  flex: 1 0 auto;
+}
+
+#lookup-button {
+  flex: 0 0 auto;
+  margin-left: 16px;
+  margin-bottom: 16px;
+}
+
+#image-input .instruction-text {
+  flex: 0 0 auto;
+  margin-bottom: 0;
+}
+
+#upload-button {
+  flex: 0 0 auto;
+  margin-left: 8px;
+}
+
+input[type="file"] {
+  display: none !important;
+}
+
+#view-more-icon {
+  height: 16px;
+  width: 16px;
+  font-size: 16px;
+  margin-left: 8px;
+  margin-top: -4px;
+  vertical-align: middle;
+}
+
+#outputs {
+  padding-top: 32px;
+}
+
+/* Mobile-specific styling */
+@media only screen and (max-width: 768px) {
+  #text-input, #image-input, #isbn-form-field, #image-input .instruction-text {
+    display: block;
+  }
+
+  #lookup-button {
+    display: block;
+    margin-left: 0;
+    margin-bottom: 0;
+  }
+
+  #upload-button {
+    display: block;
+    margin-top: 8px;
+    margin-left: 0;
+  }
+}

@@ -5,6 +5,9 @@ on:
     branches:
       - 'main'
 
+env:
+  S3_URL: ${{ secrets.S3_URL }}
+
 jobs:
   build:
     name: Build and Test
@@ -20,6 +23,9 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+      - name: Copy index.html
+        if: success()
+        run: cp dist/book-lookup/index.html dist/book-lookup/404.html
       - name: Archive build
         if: success()
         uses: actions/upload-pages-artifact@v1

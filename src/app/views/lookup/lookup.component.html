@@ -1,0 +1,54 @@
+<mat-card class="card">
+  <mat-card-content id="inputs" class="card-content">
+    <mat-tab-group id="input-tabs" mat-align-tabs="center" animationDuration="0ms">
+      <mat-tab label="Text">
+        <div class="tab-container">
+          <p class="instruction-text">Enter an ISBN to begin lookup:</p>
+          <div id="text-input">
+            <mat-form-field id="isbn-form-field">
+              <mat-label>ISBN</mat-label>
+              <input matInput cdkTextareaAutosize #isbnInput />
+            </mat-form-field>
+            <button mat-raised-button id="lookup-button" type="button" color="primary" [disabled]="!isbnInput.value"
+                (click)="handleText(isbnInput.value)">Lookup</button>
+          </div>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Image">
+        <div id="image-input" class="tab-container">
+          <p class="instruction-text">Upload an image of an ISBN barcode to begin lookup:</p>
+          <button mat-icon-button id="upload-button" (click)="fileInput.click()">
+            <mat-icon>photo_camera</mat-icon>
+          </button>
+          <input #fileInput type="file" accept="image/*" (change)="handleImage($event)" />
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+
+  <ng-container *ngIf="showResults">
+    <mat-divider></mat-divider>
+    <mat-card-content id="outputs" class="card-content">
+      <p><b>ISBN:</b> {{ isbnNumber }}</p>
+
+      <div id="success" *ngIf="book">
+        <p><b>LCCN:</b> {{ book!.lccn }}</p>
+        <p><b>Title:</b> {{ book!.title }}</p>
+        <p *ngIf="book.author"><b>Author(s):</b> {{ book!.author }}</p>
+        <p *ngIf="book.dewey"><b>Dewey Decimal Class:</b> {{ book!.dewey }}</p>
+        <p *ngIf="book.loc"><b>Library of Congress Classifications:</b> {{ book!.loc }}</p>
+        <p *ngIf="book.subjects"><b>Subjects:</b> {{ book!.subjects }}</p>
+
+        <p *ngIf="viewMoreUrl">
+          <i><a href="{{ viewMoreUrl }}" target="_blank">View more</a></i>
+          <mat-icon id="view-more-icon">open_in_new</mat-icon>
+        </p>
+      </div>
+
+      <div id="error" *ngIf="errorMessage">
+        <p>{{ errorMessage }}</p>
+      </div>
+    </mat-card-content>
+  </ng-container>
+</mat-card>
