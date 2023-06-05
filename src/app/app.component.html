@@ -1,5 +1,9 @@
 <mat-toolbar color="primary" id="header">
-  <span>Book Lookup</span>
+  <span id="app-title" [routerLink]="'lookup'">Book Lookup</span>
+  <span class="spacer"></span>
+  <button mat-icon-button matTooltip="Access library" (click)="navigateToLibrary()">
+    <mat-icon>library_books</mat-icon>
+  </button>
 </mat-toolbar>
 
 <div id="main">

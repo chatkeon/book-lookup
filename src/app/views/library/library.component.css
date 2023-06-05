@@ -1,0 +1,47 @@
+#code-input {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+#code-form-field {
+  flex: 1 0 auto;
+}
+
+#load-button {
+  flex: 0 0 auto;
+  margin-left: 16px;
+  margin-bottom: 16px;
+}
+
+#book-card .card-content {
+  padding: 0;
+}
+
+#library-name {
+  padding-bottom: 16px;
+}
+
+#add-icon {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+}
+
+#book-list .book:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+/* Mobile-specific styling */
+@media only screen and (max-width: 768px) {
+  #code-input, #code-form-field {
+    display: block;
+  }
+
+  #load-button {
+    display: block;
+    margin-left: 0;
+    margin-bottom: 0;
+  }
+}

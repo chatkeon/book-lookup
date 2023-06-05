@@ -1,5 +1,31 @@
-<mat-card class="card">
+<mat-card class="card" *ngIf="!isLibraryLoaded">
   <mat-card-content class="card-content">
-    Placeholder
+    <div id="code-input">
+      <mat-form-field id="code-form-field">
+        <mat-label>Code</mat-label>
+        <input matInput cdkTextareaAutosize #codeInput (keyup.enter)="loadLibrary(codeInput.value)" />
+      </mat-form-field>
+      <button mat-raised-button id="load-button" type="button" color="primary" [disabled]="!codeInput.value"
+          (click)="loadLibrary(codeInput.value)">Load</button>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-card id="book-card" class="card" *ngIf="isLibraryLoaded">
+  <mat-card-header>
+    <mat-card-title id="library-name">{{ library!.name }}</mat-card-title>
+    <mat-icon id="add-icon" matTooltip="Add books" [routerLink]="'lookup'">add</mat-icon>
+  </mat-card-header>
+
+  <mat-divider></mat-divider>
+
+  <mat-card-content class="card-content">
+    <mat-list id="book-list">
+      <mat-list-item class="book" *ngFor="let book of library!.books">
+        <span matListItemTitle>{{ book.title }}</span>
+        <span matListItemLine>{{ book.author }}</span>
+        <span matListItemLine>ISBN: {{ book.isbn }}, LCCN: {{ book.lccn }}</span>
+      </mat-list-item>
+    </mat-list>
   </mat-card-content>
 </mat-card>

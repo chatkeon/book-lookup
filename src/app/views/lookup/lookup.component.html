@@ -7,7 +7,7 @@
           <div id="text-input">
             <mat-form-field id="isbn-form-field">
               <mat-label>ISBN</mat-label>
-              <input matInput cdkTextareaAutosize #isbnInput />
+              <input matInput cdkTextareaAutosize #isbnInput (keyup.enter)="handleText(isbnInput.value)" />
             </mat-form-field>
             <button mat-raised-button id="lookup-button" type="button" color="primary" [disabled]="!isbnInput.value"
                 (click)="handleText(isbnInput.value)">Lookup</button>
@@ -44,6 +44,10 @@
           <i><a href="{{ viewMoreUrl }}" target="_blank">View more</a></i>
           <mat-icon id="view-more-icon">open_in_new</mat-icon>
         </p>
+
+        <button mat-raised-button id="add-button" color="accent" (click)="addToLibrary()" *ngIf="isLibraryLoaded">
+          Add to library
+        </button>
       </div>
 
       <div id="error" *ngIf="errorMessage">

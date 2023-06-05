@@ -5,9 +5,6 @@ on:
     branches:
       - 'main'
 
-env:
-  S3_URL: ${{ secrets.S3_URL }}
-
 jobs:
   build:
     name: Build and Test
@@ -22,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build
-        run: npm run build
+        run: set S3=${{ secrets.S3_URL}} && npm run build
       - name: Copy index.html
         if: success()
         run: cp dist/book-lookup/index.html dist/book-lookup/404.html

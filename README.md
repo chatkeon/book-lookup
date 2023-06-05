@@ -10,7 +10,12 @@ To be expanded in the future with basic home library functionality.
 - Book information lookup uses the [OpenLibrary books API](https://openlibrary.org/dev/docs/api/books)
 
 ## TODO
-- Add library/inventory functionality
+- Update to use actual database
+- Fix local development set-up
+- Add detection for duplicates
+- Add delete capability
+- Add search/filter capability
+- Improve error handling
 - Add unit tests
 - Expand documentation
 - Change or enhance image upload to allow using camera as barcode scanner (livestream)

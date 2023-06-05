@@ -49,6 +49,10 @@ input[type="file"] {
   vertical-align: middle;
 }
 
+#add-button {
+  margin-top: 16px;
+}
+
 #outputs {
   padding-top: 32px;
 }

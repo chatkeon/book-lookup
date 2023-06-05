@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import Quagga from '@ericblade/quagga2';
 
 import { BookService } from '../../services/book.service';
+import { LibraryService } from '../../services/library.service';
+import { StateService } from '../../services/state.service';
+
 import { Book } from '../../models/book.model';
 
 @Component({
@@ -10,13 +14,17 @@ import { Book } from '../../models/book.model';
   styleUrls: ['./lookup.component.css']
 })
 export class LookupComponent {
+  isLibraryLoaded: boolean = false;
   isbnNumber: string = '';
   showResults: boolean = false;
   book: Book | undefined;
   viewMoreUrl: string = '';
   errorMessage: string = '';
 
-  constructor(private bookService: BookService) { }
+  constructor(private stateService: StateService, private bookService: BookService,
+      private libraryService: LibraryService, public snackBar: MatSnackBar) {
+    this.isLibraryLoaded = this.stateService.isLibraryLoaded();
+  }
 
   handleText(input: string) {
     this.startProcessing();
@@ -45,6 +53,22 @@ export class LookupComponent {
       } else {
         this.errorMessage = 'Unable to detect ISBN. Please double-check your input and try again.';
         this.showResults = true;
+      }
+    });
+  }
+
+  addToLibrary() {
+    this.libraryService.addBook(this.book!).subscribe({
+      next: () => {
+        this.snackBar.open(`"${this.book!.title}" added to library`, 'OK', {
+          duration: 5000
+        });
+      },
+      error: (error: any) => {
+        console.error(error);
+        this.snackBar.open('An error occurred. Unable to add to library', 'OK', {
+          duration: 5000
+        });
       }
     });
   }
